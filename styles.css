@@ -1,0 +1,430 @@
+/* 全局设置 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+}
+
+/* 顶部导航栏 */
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+}
+
+.logo img {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+
+/* 粒子效果容器 */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* 分隔线 */
+.divider {
+    border: none;
+    height: 1.5px;
+    background-color: #555;
+    margin: 0;
+}
+
+/* 主内容样式 */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+/* 登录和注册容器样式 */
+.login-container {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+h1 span {
+    font-style: italic;
+}
+
+/* 按钮样式 */
+.email-login-btn, .login-btn, .email-register-btn {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.email-login-btn, .email-register-btn {
+    background: #fff;
+    color: #000;
+}
+
+.email-login-btn:hover, .email-register-btn:hover {
+    background: #ddd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.email-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* 表单输入框 */
+form input {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background: #222;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border 0.3s;
+}
+
+form input:focus {
+    border-color: #777;
+    outline: none;
+}
+
+form input::placeholder {
+    color: #aaa;
+}
+
+form .login-btn {
+    margin-top: 20px;
+    background-color: #444;
+    color: #fff;
+}
+
+form .login-btn:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.register-link {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #00f;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: #66f;
+    text-decoration: underline;
+}
+
+/* 分隔线样式 */
+.separator {
+    margin: 15px 0;
+    color: #aaa;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    display: inline-block;
+    width: 40%;
+    height: 1px;
+    background: #555;
+    position: absolute;
+    top: 50%;
+}
+
+.separator::before {
+    left: 0;
+}
+
+.separator::after {
+    right: 0;
+}
+
+/* ===== 现代化提示系统 ===== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: #222;
+    color: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    max-width: 320px;
+    width: 90%;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    pointer-events: none;
+    border: 1px solid #444;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+.notification-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.notification.success .notification-icon {
+    color: #4CAF50;
+    animation: iconBounce 0.6s;
+}
+
+.notification.error .notification-icon {
+    color: #F44336;
+    animation: iconShake 0.5s;
+}
+
+.notification-message {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.notification-button {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    max-width: 120px;
+}
+
+.notification-button:hover {
+    background: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.notification-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.notification-close:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 动画效果 */
+@keyframes iconBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+@keyframes iconShake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+@keyframes notificationPulse {
+    0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+.notification.success {
+    animation: notificationPulse 1.5s infinite;
+}
+
+/* 退出登录按钮样式 */
+.logout-btn {
+  position: absolute;
+  right: 20px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #777;
+}
+
+/* 视频容器样式 */
+.video-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.main-video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  background: #000;
+  display: block;
+}
+
+/* 调整header布局 */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: relative;
+}
+
+/* 调整主内容区域高度 */
+main {
+  height: auto;
+  min-height: calc(100vh - 80px);
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* 媒体容器样式 */
+.media-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 侧边图片样式 */
+.side-image {
+  width: 200px;
+  height: auto;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.side-image:hover {
+  transform: scale(1.05);
+}
+
+/* 调整视频容器宽度 */
+.video-container {
+  flex: 1;
+  max-width: 800px;
+}
+
+/* 响应式设计 - 小屏幕时堆叠排列 */
+@media (max-width: 900px) {
+  .media-container {
+    flex-direction: column;
+  }
+  
+  .side-image {
+    width: 80%;
+    max-width: 300px;
+    order: 1;
+  }
+  
+  .video-container {
+    order: 2;
+    width: 100%;
+  }
+}
